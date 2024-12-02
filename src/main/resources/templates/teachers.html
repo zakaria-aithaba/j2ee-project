@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Teachers</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<!-- Search Form -->
+<form method="get" th:action="@{index3}">
+    <input type="text" name="search" th:value="${searchName}" placeholder="Search by name" class="form-control my-3">
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+<!-- Teachers Table -->
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Qualification</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="t : ${pageTeachers}">
+        <td th:text="${t.id}"></td>
+        <td th:text="${t.name}"></td>
+        <td th:text="${t.qualification}"></td> <!-- Assuming qualification field -->
+        <td>
+            <!-- Delete and Details Links -->
+            <a class="btn btn-danger me-2" th:href="@{delete(page=${currentPage}, size=${size}, search=${searchName}, id=${t.id})}">Delete</a>
+            <a class="btn btn-info" th:href="@{details(id=${t.id})}">Details</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="nav-item me-2" th:each="p : ${tabPages}">
+            <a class="nav-link"
+               th:text="${p + 1}"
+               th:href="@{index3(page=${p}, size=${size}, search=${searchName})}"
+               th:class="${p == currentPage ? 'active' : ''}">
+            </a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

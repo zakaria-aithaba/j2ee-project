@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Subject</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            Add Subject
+        </div>
+        <div class="card-body">
+            <form method="post" th:action="@{saveSubject}">
+                <div class="mb-3">
+                    <label for="subjectId" class="form-label">Subject ID</label>
+                    <input id="subjectId" type="text" name="subjectId" class="form-control" th:value="${subject.subjectId}">
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Subject Name</label>
+                    <input id="name" type="text" name="name" class="form-control" th:value="${subject.name}">
+                </div>
+                <button class="btn btn-primary" type="submit">Add Subject</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
